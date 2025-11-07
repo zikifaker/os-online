@@ -112,8 +112,6 @@ public class Memory {
             int byteIndex = i / 8, bitIndex = i % 8;
             userSpace[byteIndex] &= (byte) ~(1 << bitIndex);
         }
-
-        // TODO: 刷新用户区界面
     }
 
     public byte[] getUserSpace() {

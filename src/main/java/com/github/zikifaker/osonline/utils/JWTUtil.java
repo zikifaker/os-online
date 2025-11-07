@@ -37,7 +37,7 @@ public class JWTUtil {
     }
 
     /**
-     * 解析JWT
+     * 解析并校验 JWT
      * @param secretKey
      * @param token
      * @return

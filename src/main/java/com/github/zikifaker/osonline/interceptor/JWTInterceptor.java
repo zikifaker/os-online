@@ -15,6 +15,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
+
 /**
  * JWT拦截器
  */
@@ -51,8 +53,8 @@ public class JWTInterceptor implements HandlerInterceptor {
             BaseContextUtil.setCurrentUserId(userId);
             return true;
         } catch (Exception e) {
-            logger.error(e.getMessage());
-            response.setStatus(401);
+            logger.error("校验JWT失败: ", e);
+            response.setStatus(SC_UNAUTHORIZED);
             return false;
         }
     }
