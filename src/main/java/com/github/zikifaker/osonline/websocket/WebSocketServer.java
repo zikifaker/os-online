@@ -178,9 +178,7 @@ public class WebSocketServer {
 
     private boolean validateToken(String token){
         // 去除前缀
-        if (token != null && token.startsWith("Bearer ")) {
-            token = token.substring(7);
-        } else {
+        if (token == null) {
             logger.error("非法JWT");
             return false;
         }

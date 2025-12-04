@@ -49,7 +49,7 @@ OS Online 是一个基于SSM框架的仿真操作系统学习网站，仅提供�
         "password": "your_password"
     }'
     ```
-4. 请求接口`ws://localhost:8088/ws/os/{sessionId}/?token=Bearer your_jwt_token` 开启一个 OS 会话，其中`sessionId`使用随机字符串填写。
+4. 请求接口`ws://localhost:8088/ws/os/{sessionId}/?token=your_jwt` 开启一个 OS 会话，其中`sessionId`使用随机字符串填写。
 5. 建立WebSocket连接后，就可以发送用户指令与 OS 实例进行交互了！在请求体中携带以下格式的JSON数据即可，支持开机（POWER_ON）、启动/暂停（REVERSE_CLOCK）、添加随机作业（REALTIME_JOB）三种指令。
     ```json
     {"command": "POWER_ON"}
