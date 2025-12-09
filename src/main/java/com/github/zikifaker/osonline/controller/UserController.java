@@ -51,7 +51,8 @@ public class UserController {
         String token = JWTUtil.createJWT(
                 jwtConfig.getSecretKey(),
                 jwtConfig.getTTL(),
-                claims);
+                claims
+        );
 
         UserLoginVO userLoginVO = new UserLoginVO.Builder()
                 .id(user.getId())

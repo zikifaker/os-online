@@ -20,11 +20,11 @@ public class ControllerLogAspect {
 
     // 定义一个切点表达式, 拦截controller层
     @Pointcut("execution(* com.github.zikifaker.osonline.controller..*.*(..))")
-    public void controllerReqPointCut() {
+    public void controllerRequestPointCut() {
     }
 
     // 记录请求
-    @Before("controllerReqPointCut()")
+    @Before("controllerRequestPointCut()")
     public void logRequest(JoinPoint joinPoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
@@ -44,17 +44,18 @@ public class ControllerLogAspect {
                 request.getMethod(),
                 joinPoint.getSignature().getDeclaringTypeName(),
                 joinPoint.getSignature().getName(),
-                Arrays.toString(joinPoint.getArgs()));
+                Arrays.toString(joinPoint.getArgs())
+        );
     }
 
     // 记录响应
-    @AfterReturning(pointcut = "controllerReqPointCut()", returning = "result")
+    @AfterReturning(pointcut = "controllerRequestPointCut()", returning = "result")
     public void logResponse(JoinPoint joinPoint, Object result) {
         logger.info("\n=== 响应内容 ===\n{}", result);
     }
 
     // 统计接口执行时间
-    @Around("controllerReqPointCut()")
+    @Around("controllerRequestPointCut()")
     public Object logAPIExecuteTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         // 执行目标方法

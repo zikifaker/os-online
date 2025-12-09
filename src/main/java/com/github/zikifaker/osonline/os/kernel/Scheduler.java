@@ -14,6 +14,16 @@ import java.util.Queue;
 public class Scheduler extends Thread {
 
     /**
+     * 高级调度周期（单位：时钟周期）
+     */
+    private final static int HIGH_LEVEL_SCHEDULE_PERIOD = 2;
+
+    /**
+     * 检查最后一级队列周期（单位：时钟周期）
+     */
+    private static final int CHECK_LAST_LEVEL_QUEUE_PERIOD = 5;
+
+    /**
      * 系统资源
      */
     private OS resource;
@@ -53,7 +63,7 @@ public class Scheduler extends Thread {
             }
 
             // 每2个时钟周期进行高级调度
-            if (resource.getClock().getCurrentTime().get() % 2 == 0) {
+            if (resource.getClock().getCurrentTime().get() % HIGH_LEVEL_SCHEDULE_PERIOD == 0) {
                 highLevelSchedule();
             }
 
@@ -118,7 +128,7 @@ public class Scheduler extends Thread {
         }
 
         // 每5个时钟周期检查最后一级队列
-        if (resource.getClock().getCurrentTime().get() % 5 == 0) {
+        if (resource.getClock().getCurrentTime().get() % CHECK_LAST_LEVEL_QUEUE_PERIOD == 0) {
             checkLastLevelQueue();
         }
 
