@@ -75,9 +75,9 @@ public class Memory {
             // 若当前位空闲，统计连续的空闲位
             if ((userSpace[byteIndex] & (1 << bitIndex)) == 0) {
                 int count = 0;
-                for (int j = i; j < BLOCK_NUM * UNIT_NUM_PER_BLOCK; j++) {
+                for (int j = i; j < BLOCK_NUM * UNIT_NUM_PER_BLOCK && count < unitNum; j++) {
                     int nextByteIndex = j / 8, nextBitIndex = j % 8;
-                    if (count >= unitNum || (userSpace[nextByteIndex] & (1 << nextBitIndex)) == 0) {
+                    if ((userSpace[nextByteIndex] & (1 << nextBitIndex)) == 0) {
                         count++;
                     } else {
                         break;
