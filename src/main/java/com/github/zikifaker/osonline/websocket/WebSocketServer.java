@@ -3,18 +3,13 @@ package com.github.zikifaker.osonline.websocket;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.zikifaker.osonline.config.JWTConfig;
-import com.github.zikifaker.osonline.constant.JWTClaimsConstant;
 import com.github.zikifaker.osonline.constant.OSConstant;
 import com.github.zikifaker.osonline.dto.OSCommandDTO;
 import com.github.zikifaker.osonline.os.core.OS;
-import com.github.zikifaker.osonline.utils.BaseContextUtil;
 import com.github.zikifaker.osonline.utils.JWTUtil;
-import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -75,6 +70,7 @@ public class WebSocketServer {
 
     /**
      * WebSocket endpoint不由 Spring 容器管理，需要通过自定义配置来解决依赖注入问题
+     *
      * @param jwtConfig
      */
     public static void setJWTConfig(JWTConfig jwtConfig) {
@@ -90,7 +86,7 @@ public class WebSocketServer {
     public void onOpen(Session session, @PathParam("sessionId") String sessionId) {
         // JWT 鉴权
         String token = extractTokenFromSession(session);
-        if(!validateToken(token)){
+        if (!validateToken(token)) {
             try {
                 session.close(new CloseReason(CloseReason.CloseCodes.VIOLATED_POLICY, "Unauthorized"));
                 return;
@@ -176,7 +172,7 @@ public class WebSocketServer {
         return null;
     }
 
-    private boolean validateToken(String token){
+    private boolean validateToken(String token) {
         // 去除前缀
         if (token == null) {
             logger.error("非法JWT");
@@ -208,7 +204,7 @@ public class WebSocketServer {
             return;
         }
         try {
-            logger.info("发送消息: {}", message);
+            logger.debug("发送消息: {}", message);
             session.getBasicRemote().sendText(message);
         } catch (IOException e) {
             logger.error("推送OS实例日志失败: ", e);

@@ -38,14 +38,14 @@ public class JWTUtil {
 
     /**
      * 解析并校验 JWT
+     *
      * @param secretKey
      * @param token
      * @return
      */
     public static Claims parseJWT(String secretKey, String token) {
-        Claims claims = Jwts.parser()
+        return Jwts.parser()
                 .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
                 .parseClaimsJws(token).getBody();
-        return claims;
     }
 }

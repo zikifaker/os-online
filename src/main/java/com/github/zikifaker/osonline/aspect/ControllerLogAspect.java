@@ -33,7 +33,7 @@ public class ControllerLogAspect {
 
         HttpServletRequest request = attributes.getRequest();
 
-        logger.info("\n=== 请求信息 ===\n" +
+        logger.debug("\n=== 请求信息 ===\n" +
                         "IP: {}\n" +
                         "URL: {}\n" +
                         "HTTP Method: {}\n" +
@@ -51,7 +51,7 @@ public class ControllerLogAspect {
     // 记录响应
     @AfterReturning(pointcut = "controllerRequestPointCut()", returning = "result")
     public void logResponse(JoinPoint joinPoint, Object result) {
-        logger.info("\n=== 响应内容 ===\n{}", result);
+        logger.debug("\n=== 响应内容 ===\n{}", result);
     }
 
     // 统计接口执行时间
@@ -61,7 +61,7 @@ public class ControllerLogAspect {
         // 执行目标方法
         Object result = joinPoint.proceed();
         long duration = System.currentTimeMillis() - start;
-        logger.info("\n=== 接口耗时 === \n{} ms", duration);
+        logger.debug("\n=== 接口耗时 === \n{} ms", duration);
         return result;
     }
 
