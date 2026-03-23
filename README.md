@@ -12,6 +12,13 @@ OS Online 是一个基于SSM框架的仿真操作系统学习网站，仅提供�
 
 用户创建会话后，通过发送指令与仿真操作系统交互。查看系统推送的运行日志，增强对于操作系统基础知识的理解。
 
+## 技术栈
+
+- **Java 8** 
+- **Spring Boot 2.6.13** 
+- **MyBatis 2.2.2**
+- **MySQL 8+**
+
 ## 功能
 
 ### 登录鉴权
@@ -30,7 +37,7 @@ OS Online 是一个基于SSM框架的仿真操作系统学习网站，仅提供�
 
 ## 快速开始
 
-1. 执行`src/main/resources/sql`的sql文件，在MySQL建立数据表。
+1. 执行`src/main/resources/sql`的SQL文件，在MySQL建立数据表。
 2. 启动项目（默认在本地8088端口启动），使用curl或其他API调试工具（例如[hoppsotch](https://hoppspot.io)等）进行用户注册。
     ```curl
     curl -X POST http://localhost:8088/user/register \
@@ -55,10 +62,3 @@ OS Online 是一个基于SSM框架的仿真操作系统学习网站，仅提供�
     ```json
     {"command": "POWER_ON"}
     ```
-
-## 技术栈
-
-- **Java 8** 
-- **Spring Boot 2.6.13** 
-- **MyBatis 2.2.2**
-- **MySQL 8+**
