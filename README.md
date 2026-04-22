@@ -6,7 +6,7 @@
 [![MyBatis](https://img.shields.io/badge/MyBatis-2.2.2-000000?logo=apache&logoColor=white)](https://mybatis.org/)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/zikifaker/os-online)
 
-## 项目介绍
+## 介绍
 
 OS Online 是一个基于 SSM
 框架开发的仿真操作系统学习网站后端，仿真操作系统的设计参考 [NJAU-OS-course-design-simulated-linux](https://github.com/404874351/NJAU-OS-course-design-simulated-linux)。
