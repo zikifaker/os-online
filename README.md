@@ -31,7 +31,7 @@ OS Online 是一个基于 SSM
 ## 快速开始
 
 1. 执行`src/main/resources/sql`的 SQL 文件，在 MySQL 建立数据表。
-2. 启动项目（默认在本地 8088 端口启动），使用 curl 或其他 API 调试工具（例如 [hoppsotch](https://hoppspot.io) 等）进行用户注册。
+2. 启动项目（默认在本地 8088 端口启动），使用 curl 或其他 API 调试工具进行用户注册。
     ```curl
     curl -X POST http://localhost:8088/user/register \
       -H "Content-Type: application/json" \
@@ -50,7 +50,7 @@ OS Online 是一个基于 SSM
         "password": "your_password"
     }'
     ```
-4. 请求接口 `ws://localhost:8088/ws/os/{sessionId}/?token=your_jwt` 开启一个 OS 会话，其中 `sessionId` 使用随机字符串填写。
+4. 请求接口 `ws://localhost:8088/ws/os/<session_id>/?token=<your_jwt>` 开启一个 OS 会话，其中 `session_id` 使用随机字符串填写。
 5. 建立 WebSocket 连接后，就可以发送用户指令与 OS 进行交互了！在请求体中携带以下格式的 JSON
    数据即可，支持开机（POWER_ON）、启动/暂停（REVERSE_CLOCK）、添加随机作业（REALTIME_JOB）三种指令。
     ```json
